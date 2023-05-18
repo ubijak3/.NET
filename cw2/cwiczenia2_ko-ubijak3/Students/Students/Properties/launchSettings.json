@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Students": {
+      "commandName": "Project",
+      "commandLineArgs": "D:/DotNetProjects/cw2/cwiczenia2_ko-ubijak3/Students/dane.csv D:/DotNetProjects/cw2/cwiczenia2_ko-ubijak3/Students D:/DotNetProjects/cw2/cwiczenia2_ko-ubijak3/Students/logs.txt json"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Crawler": {
+      "commandName": "Project",
+      "commandLineArgs": "https://pja.edu.pl/\r\n"
+    }
+  }
+}

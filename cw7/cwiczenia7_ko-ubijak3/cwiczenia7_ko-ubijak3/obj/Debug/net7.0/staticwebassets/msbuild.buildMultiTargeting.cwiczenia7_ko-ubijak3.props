@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\cwiczenia7_ko-ubijak3.props" />
+</Project>
