@@ -19,6 +19,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
+        [Route("/Doctor")]
         public async Task<IActionResult> GetDoctors() {
             var ret = await _context.Doctors.Select(e => new
             {
@@ -45,6 +46,7 @@ namespace WebApplication1.Controllers
             return Ok(ret);
         }
         [HttpPost]
+        [Route("/Doctor/AddDoctor")]
         public async Task<IActionResult> AddDoctor(DoctorPOST doctorPOST)
         {
             await _context.Doctors.AddAsync(new Doctor
@@ -57,7 +59,8 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
-        [HttpDelete("{index}")]
+        [HttpDelete]
+        [Route("/Doctor/RemoveDoctor/{index}")]
         public async Task<IActionResult> RemoveDoctor(int index)
         {
             var doctor = _context.Doctors.Where(e => e.IdDoctor == index).FirstOrDefault();
@@ -69,7 +72,8 @@ namespace WebApplication1.Controllers
             return NotFound("There is no doctor with this id");
         }
 
-        [HttpPut("{index}")]
+        [HttpPut]
+        [Route("/Doctor/UpdateDoctor/{index}")]
         public async Task<IActionResult> UpdateDoctor(int index, DoctorPUT doctorPUT)
         {
            //var doctor = await _context.Doctors.Where(e => e.IdDoctor == index).FirstOrDefaultAsync();
@@ -85,7 +89,8 @@ namespace WebApplication1.Controllers
             return Ok();
         }
 
-        [HttpGet("{IdPrescription}")]
+        [HttpGet]
+        [Route("/Prescription/{index}")]
         public async Task<IActionResult> GetReceipt(int IdPrescription)
         {
            var prescription = await _context.Prescriptions.Where(e => e.IdPrescription == IdPrescription).Select(e => new

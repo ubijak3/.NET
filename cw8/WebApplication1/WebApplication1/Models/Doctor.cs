@@ -8,13 +8,13 @@ namespace WebApplication1.Models
         public int IdDoctor { get; set; }
         [Required]
         [MaxLength(100)]
-        public String FirstName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
         [Required]
         [MaxLength(100)]
-        public String LastName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
         [Required]
         [MaxLength(100)]
-        public String Email { get; set; } = null!;
+        public string Email { get; set; } = null!;
         public virtual ICollection<Prescription> Prescriptions { get; set; }
     }
 }

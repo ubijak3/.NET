@@ -6,12 +6,12 @@ namespace WebApplication1.DTOs
     {
         [Required]
         [MaxLength(100)]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
         [MaxLength(100)]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
         [Required]
         [MaxLength(100)]
-        public String Email { get; set; }
+        public string Email { get; set; }
     }
 }

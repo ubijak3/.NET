@@ -13,7 +13,7 @@ namespace WebApplication1.Models
         public int? Dose { get; set; }
         [Required]
         [MaxLength(100)]
-        public String Details { get; set; } = null!;
+        public string Details { get; set; } = null!;
         [ForeignKey(nameof(IdMedicament))]
         public virtual Medicament Medicament { get; set; } = null!;
         [ForeignKey(nameof(IdPrescription))]

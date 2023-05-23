@@ -149,7 +149,7 @@ namespace WebApplication1.Models
 
                 e.HasOne(e => e.Prescription)
                 .WithMany(e => e.PrescriptionMedicaments)
-                .HasForeignKey(e => e.IdPrescription) 
+                .HasForeignKey(e => e.IdPrescription)
                 .OnDelete(DeleteBehavior.Cascade);
 
                 e.ToTable("Prescription_Medicament");
