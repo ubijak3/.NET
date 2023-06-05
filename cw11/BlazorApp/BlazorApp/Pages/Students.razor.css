@@ -1,0 +1,18 @@
+﻿table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+table,td,th{
+    border: 1px solid gray;
+}
+td,th{
+    padding: 5px;
+    text-align: center;
+}
+img{
+    width: 50px;
+}
+.NoBorder{
+    border: none;
+}

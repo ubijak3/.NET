@@ -1,0 +1,94 @@
+﻿@page "/students"
+@inject IStudentService Service;
+@inject NavigationManager NM;
+@inject IJSRuntime JS;
+
+<h3>Students</h3>
+
+@if(_students is null)
+{
+    <img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="LoadingGif" >
+}else
+{
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th @onclick=@(()=> Sort("FirstName"))>First Name</th>
+                    <th @onclick=@(()=> Sort("LastName"))>Last Name</th>
+                    <th @onclick=@(()=> Sort("Birthdate"))>Birthdate</th>
+                    <th @onclick=@(()=> Sort("Studies"))>Studies</th>
+                    <th class="NoBorder"></th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var s in _students)
+                    {
+                    <tr>
+                        <td @onclick=@(() => NM.NavigateTo($"/students/{s.IdStudent}"))><img src=@s.AvatarUrl alt="avatar" /></td>
+                        <td>@s.FirstName</td>
+                        <td>@s.LastName</td>
+                        <td>@s.Birthdate</td>
+                        <td>@s.Studies</td>
+                        <td class="NoBorder">
+                            <button class="NoBorder" @onclick=@(()=> RemoveStudent(s.IdStudent))><img src="https://img.redro.pl/naklejki/square-red-x-mark-icon-button-cross-symbol-on-white-background-400-182239812.jpg" /></button>
+                        </td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+
+}
+
+
+@code {
+    private ICollection<Student>? _students;
+    private string? sortedColumnName;
+    private bool isAsc;
+
+    private async Task RemoveStudent(int id)
+    {
+        if(await JS.InvokeAsync<bool>("confirm","Do you want to remove student?"))
+            Service.RemoveStudent(id);
+
+    }
+
+    private void Sort(string columnName)
+    {
+        if(sortedColumnName is null)
+        {
+            _students = _students!.OrderBy(e => e.GetType().GetProperty(columnName)?.GetValue(e)).ToList();
+            sortedColumnName = columnName;
+            isAsc = true;
+            return;
+        }
+        if(sortedColumnName != columnName)
+        {
+            _students = _students!.OrderBy(e => e.GetType().GetProperty(columnName)?.GetValue(e)).ToList();
+            sortedColumnName = columnName;
+            isAsc = true;
+            return;
+        }
+        if(sortedColumnName == columnName && isAsc)
+        {
+            _students = _students!.OrderByDescending(e => e.GetType().GetProperty(columnName)?.GetValue(e)).ToList();
+            sortedColumnName = columnName;
+            isAsc = false;
+            return;
+        }
+        if (sortedColumnName == columnName && !isAsc)
+        {
+            _students = _students!.OrderBy(e => e.GetType().GetProperty(columnName)?.GetValue(e)).ToList();
+            sortedColumnName = columnName;
+            isAsc = true;
+            return;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _students = Service.GetStudents();
+    }
+}

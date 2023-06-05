@@ -1,0 +1,18 @@
+table[b-7xqw5civ7f] {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+table[b-7xqw5civ7f],td[b-7xqw5civ7f],th[b-7xqw5civ7f]{
+    border: 1px solid gray;
+}
+td[b-7xqw5civ7f],th[b-7xqw5civ7f]{
+    padding: 5px;
+    text-align: center;
+}
+img[b-7xqw5civ7f]{
+    width: 50px;
+}
+.NoBorder[b-7xqw5civ7f]{
+    border: none;
+}

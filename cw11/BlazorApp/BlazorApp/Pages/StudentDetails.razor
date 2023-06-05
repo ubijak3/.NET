@@ -1,0 +1,28 @@
+﻿@page "/students/{Id:int}"
+@inject IStudentService Service;
+
+<h3>Student's details</h3>
+
+@if(_student is not null)
+{       
+    <img src="@_student.AvatarUrl">
+    <p class="username">First Name: @_student.FirstName</p>
+    <p class="username">Last Name: @_student.LastName</p>
+    <p class="a">Birthdate: @_student.Birthdate</p>
+    <p class="a">Studies Name: @_student.Studies</p>
+    <p class="avatar">Avatar: @_student.AvatarUrl</p>
+        
+}
+
+<a href="/students">back</a>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Student? _student;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _student = Service.GetStudent(Id);
+    }
+}
